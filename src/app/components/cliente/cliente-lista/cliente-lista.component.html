@@ -1,0 +1,113 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="font-weight-bold">Clientes</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Lista de clientes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Filtro de clientes -->
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="#" method="post" [formGroup]="form" (ngSubmit)="buscarClientes()">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center border-0">
+                                <h3 class="card-title">Filtrar busqueda de clientes</h3>
+                                <a routerLink="/admin/clientes/agregar" href="#" class="ml-auto btn btn-primary"><i class="fas fa-plus-circle"></i> Agregar cliente</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select name="tipo" id="tipo" formControlName="tipo" class="form-control" [ngClass]="{'border-danger' : (form.get('tipo')?.errors?.['required'] && submitted) || (form.get('tipo')?.errors?.['required'] && form.get('tipo')?.dirty)}">
+                                                <option value="" hidden disabled selected>Buscar por</option>
+                                                <option value="nombre">Nombre</option>
+                                                <option value="email">Email</option>
+                                                <option value="dni">DNI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" name="texto" id="texto" formControlName="texto" class="form-control" placeholder="Texto de busqueda..." [ngClass]="{'border-danger' : (form.get('texto')?.errors?.['required'] && submitted) || (form.get('texto')?.errors?.['required'] && form.get('texto')?.dirty)}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-info btn-block"><i class="fas fa-search"></i> Buscar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button (click)="limpiar()" type="button" class="btn btn-danger btn-block"><i class="fas fa-sync-alt"></i> Limpiar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Lista de clientes -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Lista de clientes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Id</th> -->
+                                            <th>Nombre</th>
+                                            <th>Telefono</th>
+                                            <th>Email</th>
+                                            <th>DNI</th>
+                                            <th>Direccion</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of clientes | paginate: { itemsPerPage: 10, currentPage: p }">
+                                            <!-- <td>{{ i.id }}</td> -->
+                                            <td>{{ i.nombre }}</td>
+                                            <td>{{ i.telefono }}</td>
+                                            <td>{{ i.email }}</td>
+                                            <td>{{ i.dni }}</td>
+                                            <td>{{ i.direccion }}</td>
+                                            <td class="w-25 text-center">
+                                                <div class="btn-group">
+                                                    <a routerLink="/admin/clientes/{{ i.id }}/detalles" href="#" class="btn btn-light text-secondary" title="Detalles"><i class="fas fa-info-circle"></i></a>
+                                                    <a routerLink="/admin/clientes/{{ i.id }}/editar" href="#" class="btn btn-light text-warning" title="Editar"><i class="fas fa-marker"></i></a>
+                                                    <button type="button" (click)="eliminarCliente(i.id)" class="btn btn-light text-danger" title="Eliminar"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="clientes.length == 0">
+                                            <td colspan="6">Datos no disponibles!</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

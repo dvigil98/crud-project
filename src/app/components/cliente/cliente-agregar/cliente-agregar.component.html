@@ -1,0 +1,76 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="font-weight-bold">Clientes</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/admin/clientes" href="#">Lista de clientes</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Agregar cliente</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="#" method="post" [formGroup]="form" (ngSubmit)="guardarCliente()">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">Agregar cliente</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre: 
+                                                <small *ngIf="(form.get('nombre')?.errors?.['required'] && submitted) || (form.get('nombre')?.errors?.['required'] && form.get('nombre')?.dirty)" class="text-danger">El nombre es requerido *</small> 
+                                            </label>
+                                            <input type="text" name="nombre" id="nombre" formControlName="nombre" class="form-control" placeholder="Nombre..." [ngClass]="{'border-danger' : (form.get('nombre')?.errors?.['required'] && submitted) || (form.get('nombre')?.errors?.['required'] && form.get('nombre')?.dirty)}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono">Telefono: 
+                                                <small *ngIf="(form.get('telefono')?.errors?.['required'] && submitted) || (form.get('telefono')?.errors?.['required'] && form.get('telefono')?.dirty)" class="text-danger">El telefono es requerido *</small> 
+                                            </label>
+                                            <input type="text" name="telefono" id="telefono" formControlName="telefono" class="form-control" placeholder="Telefono..." [ngClass]="{'border-danger' : (form.get('telefono')?.errors?.['required'] && submitted) || (form.get('telefono')?.errors?.['required'] && form.get('telefono')?.dirty)}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="email">Email: 
+                                                <small *ngIf="(form.get('email')?.errors?.['required'] && submitted) || (form.get('email')?.errors?.['required'] && form.get('email')?.dirty)" class="text-danger">El email es requerido *</small> 
+                                                <small *ngIf="form.get('email')?.errors?.['email']" class="text-danger">El email debe ser valido*</small> 
+                                            </label>
+                                            <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Email..." [ngClass]="{'border-danger' : (form.get('email')?.errors?.['required'] && submitted) || (form.get('email')?.errors?.['required'] && form.get('email')?.dirty) || (form.get('email')?.errors?.['email'])}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dni">DNI: 
+                                                <small *ngIf="(form.get('dni')?.errors?.['required'] && submitted) || (form.get('dni')?.errors?.['required'] && form.get('dni')?.dirty)" class="text-danger">El DNI es requerido *</small> 
+                                            </label>
+                                            <input type="text" name="dni" id="dni" formControlName="dni" class="form-control" placeholder="DNI..." [ngClass]="{'border-danger' : (form.get('dni')?.errors?.['required'] && submitted) || (form.get('dni')?.errors?.['required'] && form.get('dni')?.dirty)}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="direccion">Direccion: 
+                                                <small *ngIf="(form.get('direccion')?.errors?.['required'] && submitted) || (form.get('direccion')?.errors?.['required'] && form.get('direccion')?.dirty)" class="text-danger">La direccion es requerida *</small> 
+                                            </label>
+                                            <input type="text" name="direccion" id="direccion" formControlName="direccion" class="form-control" placeholder="Direccion..." [ngClass]="{'border-danger' : (form.get('direccion')?.errors?.['required'] && submitted) || (form.get('direccion')?.errors?.['required'] && form.get('direccion')?.dirty)}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <a routerLink="/admin/clientes" href="#" class="ml-1 btn btn-dark">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
