@@ -67,7 +67,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table class="table text-center">
                                     <thead>
                                         <tr>
                                             <!-- <th>Id</th> -->
@@ -76,7 +76,7 @@
                                             <th>Email</th>
                                             <th>DNI</th>
                                             <th>Direccion</th>
-                                            <th class="text-center">Acciones</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,7 +87,7 @@
                                             <td>{{ i.email }}</td>
                                             <td>{{ i.dni }}</td>
                                             <td>{{ i.direccion }}</td>
-                                            <td class="w-25 text-center">
+                                            <td class="w-25">
                                                 <div class="btn-group">
                                                     <a routerLink="/admin/clientes/{{ i.id }}/detalles" href="#" class="btn btn-light text-secondary" title="Detalles"><i class="fas fa-info-circle"></i></a>
                                                     <a routerLink="/admin/clientes/{{ i.id }}/editar" href="#" class="btn btn-light text-warning" title="Editar"><i class="fas fa-marker"></i></a>
