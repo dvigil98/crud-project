@@ -53,7 +53,7 @@ export class ClienteListaComponent implements OnInit {
       text: "¿Seguro de eliminar este registro?",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#007bff',
+      confirmButtonColor: '#dc3545',
       cancelButtonColor: '#343a40',
       confirmButtonText: 'Eliminar',
       cancelButtonText: 'Cancelar'
